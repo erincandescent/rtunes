@@ -176,7 +176,7 @@ main(int argc, char *argv[])
 	size_t		 a, e;
 	ssize_t		 nread;
 	int		 port = AIRPORT;
-	int		 i, r, s, ch, fd, raw = 0, sample;
+	int		 i, r, ch, fd, raw = 0, sample;
 	char		 cwd[1024];
 	unsigned char	 bufraw[4096 * 2 * 2], bufala[(4096 * 2 * 2) + 3];
 	unsigned char	*buf;
@@ -329,7 +329,7 @@ main(int argc, char *argv[])
 
 			e = cipher_aes_sendsample(buf, nread);
 
-			s = sys_write(sfd_stream, buf, e);
+			(void)sys_write(sfd_stream, buf, e);
 
 			free(buf);
 		}
@@ -358,7 +358,7 @@ main(int argc, char *argv[])
 
 		e = cipher_aes_sendsample(buf, a);
 
-		s = sys_write(sfd_stream, buf, e);
+		(void)sys_write(sfd_stream, buf, e);
 
 		free(buf);
 	}

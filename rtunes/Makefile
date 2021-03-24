@@ -10,11 +10,6 @@ SRCS+= y.tab.h
 y.tab.h: parse.y
 .endif
 
-.if ${OS} == "NetBSD"
-VPATH=	../libbsd
-SRCS+=	strtonum.c
-.endif
-
 CFLAGS+=	-Wall -Wstrict-prototypes -ansi
 LDADD+=		-lcrypto
 LINTFLAGS+=	-u
