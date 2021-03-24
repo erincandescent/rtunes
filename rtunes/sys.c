@@ -17,6 +17,9 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
+/* Make glibc expose NI_MAXHOST/NI_MAXSERV */
+#define _DEFAULT_SOURCE
+
 #include <sys/param.h>
 #include <sys/types.h>
 #include <sys/socket.h>
