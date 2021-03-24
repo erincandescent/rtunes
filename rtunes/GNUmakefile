@@ -1,6 +1,6 @@
 # $Id: GNUmakefile,v 1.7 2009/06/26 14:52:31 mbalmer Exp $
 
-CCFLAGS = -O2 -pipe -Wall -Wstrict-prototypes -D_ISOC99_SOURCE -c
+CCFLAGS = -O2 -pipe -Wall -Wstrict-prototypes -D_GNU_SOURCE -c
 
 rtunes:		rtunes.o cipher.o mp4.o rtsp.o sys.o parse.o
 		cc -o rtunes rtunes.o cipher.o mp4.o rtsp.o sys.o \

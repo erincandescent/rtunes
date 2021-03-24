@@ -26,9 +26,7 @@
 #include "proto.h"
 
 #ifdef __linux__
-#include "../libbsd/strlcpy.h"
-#include "../libbsd/strlcat.h"
-#include "../libbsd/arc4random.h"
+#include "bsd/string.h"
 #endif
 
 /* global vars local */

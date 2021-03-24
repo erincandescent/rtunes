@@ -30,7 +30,10 @@
 #include <stdlib.h>
 #include <string.h>
 #include <syslog.h>
-
+#ifdef __linux__
+#include <bsd/stdlib.h>
+#endif
+	
 FILE	*fin;
 int	lineno = 1;
 int	errors = 0;
