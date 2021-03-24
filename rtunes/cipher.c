@@ -122,15 +122,11 @@ cipher_rsa_encrypt_aeskey(unsigned char *aeskey)
 
 	/* initialize RSA public key */
 	key = RSA_new();
-	key->n = BN_bin2bn(n_bin, 256, key->n);;
-	key->e = BN_bin2bn(e_bin, 3, key->e);
-	key->d = NULL;
-	key->p = NULL;
-	key->q = NULL;
-	key->dmp1 = NULL;
-	key->dmq1 = NULL;
-	key->iqmp = NULL;
-
+	RSA_set0_key(key,
+		BN_bin2bn(n_bin, 256, NULL),
+		BN_bin2bn(e_bin, 3,   NULL),
+		NULL);
+	
 	/* RSA encrypt */
 	to = malloc(256);
 	if (RSA_public_encrypt(16, aeskey, to, key, RSA_PKCS1_OAEP_PADDING) < 1)
