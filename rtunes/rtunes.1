@@ -1,0 +1,72 @@
+.\" $Id: rtunes.1,v 1.5 2009/06/26 14:43:09 mbalmer Exp $
+.\"
+.\" Copyright (c) 2006-2008 Marcus Glocker <marcus@nazgul.ch>
+.\" Copyright (c) 2006-2008 Marc Balmer <marc@msys.ch>
+.\"
+.\" Permission to use, copy, modify, and distribute this software for any
+.\" purpose with or without fee is hereby granted, provided that the above
+.\" copyright notice and this permission notice appear in all copies.
+.\"
+.\" THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+.\" WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+.\" MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
+.\" ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+.\" WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
+.\" ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
+.\" OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+.\"
+.Dd Feb 10, 2008
+.Dt RTUNES 1
+.Os
+.Sh NAME
+.Nm rtunes
+.Nd Stream audio data to an Apple AirPort Express device
+.Sh SYNOPSIS
+.Nm rtunes
+.Op Fl 46
+.Op Fl f Ar configfile
+.Op Fl h Ar host
+.Ar file(s)
+.Sh DESCRIPTION
+.Nm
+streams files containing Apple Lossless audio data to an Apple AirPort
+Express device.
+If a '-' is given as the
+.Ar file(s)
+argument,
+.Nm
+expects raw PCM audio data (stereo, 44100 Hz) on stdin
+and encodes it to the Apple Lossless format prior to streaming it.
+With this method it is possible to stream audio data from any source
+that can output raw PCM audio data on stdout, e.g.:
+.Bd -literal -offset indent
+madplay -S -R44100 -o raw:- benson.mp3 | rtunes -
+.Ed
+.Pp
+Here the audio player madplay is used to decode benson.mp3 to raw PCM
+audio data and pipe it to stdin of
+.Nm .
+.Sh OPTIONS
+.Bl -tag -width Ds
+.It Fl 4
+Use only IPv4 transport (default is to use IPv6 and IPv4, depending on the
+hostname).
+.It Fl 6
+Use only IPv6 transport.
+.It Fl f
+Specify an alternative configuration file.
+.It Fl h
+Specify the hostname of device to stream audio to.
+.Sh FILES
+.Bl -tag -width "/etc/rtunes.confXX" -compact
+.It Pa /etc/rtunes.conf
+Default location of the configuration file.
+.El
+.Sh AUTHORS
+.Nm
+was written by
+.An Marcus Glocker Aq marcus@nazgul.ch
+and
+.An Marc Balmer Aq marc@msys.ch .
+.Sh SEE ALSO
+.Xr rtunes.conf 5

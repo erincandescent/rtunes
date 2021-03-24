@@ -1,0 +1,45 @@
+0.8
+===
+- drop support for MacOSX
+- compile on NetBSD well
+- make compilation on Linux work again
+- mention in man page that rtunes expect 44.1 kHz data in stereo.
+  Patch from Matt Dempsky
+
+0.7
+===
+- added IPv6 support
+- replaced the lex scanner with a scanner often used in OpenBSD
+  daemons
+- minor cleanups
+
+0.6
+===
+- update librtunes mplayer.diff to work with MPlayer-1.0pre8 and simplify
+  the diff
+
+0.5
+===
+- fixed a bug that would let rtunes dump core when the local hostname
+  could not be resolved
+
+0.4
+===
+- ported to FreeBSD, MacOSX, and Linux
+- added rtunes library for mplayer
+- configuration file parser outputs proper error messages if syntax
+  errors are encountered
+
+0.3
+===
+- fixed rtunes to work also on big endian cpu's (e.g. sparc)
+
+0.2
+===
+- the airport crashed in most cases after playing long songs.  fixed by
+  closing the streaming socket before we teardown
+- added RAW PCM audio processing
+
+0.1
+===
+- initial version

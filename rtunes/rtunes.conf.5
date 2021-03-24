@@ -1,0 +1,51 @@
+.\" $Id: rtunes.conf.5,v 1.1 2006/05/06 08:17:17 hacki Exp $
+.\"
+.\" Copyright (c) 2006 Marc Balmer <mbalmer@openbsd.org>
+.\"
+.\" Permission to use, copy, modify, and distribute this software for any
+.\" purpose with or without fee is hereby granted, provided that the above
+.\" copyright notice and this permission notice appear in all copies.
+.\"
+.\" THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+.\" WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+.\" MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
+.\" ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+.\" WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
+.\" ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
+.\" OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+.\"
+.Dd February 1, 2006
+.Dt RTUNES.CONF 5
+.Os
+.Sh NAME
+.Nm rtunes.conf
+.Nd rtunes configuration file
+.Sh SYNOPSIS
+.Nm rtunes.conf
+.Sh DESCRIPTION
+The operational mode and behaviour of the rtunes program is defined in
+.Bk -words
+.Nm .
+.Ek
+.Sh SYNTAX
+Empty lines and lines beginning with
+.Sq #
+are ignored.
+.Sh OPERATION
+.Bl -ohang
+.It Em stream to <host>
+Stream tunes to the airport express box at <host>.
+.El
+.Sh FILES
+.Bl -tag -width "/etc/rtunes.confXX" -compact
+.It Pa /etc/rtunes.conf
+Default location of the configuration file
+.El
+.Sh EXAMPLES
+.Bd -literal -offset indent
+# Play tunes on airbox.mynet.local
+
+stream to airbox.mynet.local
+.Ed
+.Sh SEE ALSO
+.Xr rtunes 1

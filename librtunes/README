@@ -1,0 +1,41 @@
+Introduction
+------------
+
+The rtunes library is designed for MPlayer.  When the library is applied
+to the MPlayer build you will be able to stream any codec supported by
+MPlayer to the AirPort Express device.  The rtunes library is accessed
+over the MPlayer Audio Output module.
+
+As the rtunes Audio Output module is not included in the official MPlayer
+build yet, you have to apply it manually when building MPlayer.
+
+Note: mplayer.diff applies correctly to MPlayer-1.0pre8.  If you use
+      another version you are on your own.
+
+Installation
+------------
+
+Do the following steps to build MPlayer with rtunes support:
+
+	* build rtunes
+	* apply mplayer.diff to the MPlayer source directory
+	* copy librtunes.a to your system library directory (e.g. /usr/lib)
+	* build mplayer
+
+Note: This works also for the OpenBSD port.  Just use the MPlayer source in
+      the ports working directory after doing a `make patch`.
+
+Usage
+-----
+
+Now MPlayer should include rtunes support.  Check if it worked by:
+
+	mplayer -ao help
+
+To stream audio:
+
+	mplayer -ao rtunes:device=192.168.1.23 <audiofile>
+
+	mplayer -ao rtunes:device=192.168.1.23 <URL>
+
+Have fun!
