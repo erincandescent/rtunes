@@ -3,7 +3,7 @@
 CCFLAGS = -O2 -pipe -Wall -Wstrict-prototypes -D_ISOC99_SOURCE -c
 
 rtunes:		rtunes.o cipher.o mp4.o rtsp.o sys.o parse.o
-		cc -L../libbsd -o rtunes rtunes.o cipher.o mp4.o rtsp.o sys.o \
+		cc -o rtunes rtunes.o cipher.o mp4.o rtsp.o sys.o \
 		    parse.o -lbsd -lcrypto
 		strip rtunes
 

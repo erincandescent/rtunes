@@ -5,7 +5,7 @@ RT = ../rtunes
 LB = ../libbsd
 
 librtunes.a:	rtunes.o ${RT}/cipher.o ${RT}/mp4.o ${RT}/rtsp.o ${RT}/sys.o
-		ar -r librtunes.a rtunes.o ${RT}/cipher.o ${RT}/mp4.o ${RT}/rtsp.o ${RT}/sys.o ${LB}/arc4random.o ${LB}/strlcat.o ${LB}/strlcpy.o
+		ar -r librtunes.a rtunes.o ${RT}/cipher.o ${RT}/mp4.o ${RT}/rtsp.o ${RT}/sys.o
 
 rtunes.o:	rtunes.c
 		cc ${CCFLAGS} rtunes.c
