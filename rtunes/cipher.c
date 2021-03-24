@@ -58,7 +58,7 @@ cipher_aes_sendsample(unsigned char *buf, size_t len)
 		len_encrypt = len;
 
 	/* prepend sample header */
-	memcpy(buf + 16, buf, len_encrypt);
+	memmove(buf + 16, buf, len_encrypt);
 	memcpy(buf, header, 16L);
 	/* write sample size into header */
 	j = len_encrypt + 12;
