@@ -25,8 +25,11 @@
 #include <signal.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdint.h>
 #include <string.h>
 #include <unistd.h>
+#include <endian.h>
+#include <errno.h>
 
 #include "config.h"
 #include "extern.h"
@@ -65,7 +68,7 @@ usage(void)
 {
 	extern char	*__progname;
 
-	fprintf(stderr, "usage: %s [-46] [-f configfile] [-h host] <file(s)>\n",
+	fprintf(stderr, "usage: %s [-46] [-f configfile] [-h host] [-p port] <file(s)>\n",
 	    __progname);
 
 	exit(1);
@@ -175,6 +178,7 @@ main(int argc, char *argv[])
 {
 	size_t		 a, e;
 	ssize_t		 nread;
+	long 		 parsedn;
 	int		 port = AIRPORT;
 	int		 i, r, ch, fd, raw = 0, sample;
 	char		 cwd[1024];
@@ -204,7 +208,11 @@ main(int argc, char *argv[])
 			host = optarg;
 			break;
 		case 'p':
-			port = atoi(optarg);
+			errno = 0;
+			parsedn = strtol(optarg, NULL, 0);
+			if (parsedn < 0 || parsedn > UINT16_MAX || errno != 0)
+				errx(1, "Invalid port number");
+			port = (int)parsedn;
 			break;
 		default:
 			usage();
