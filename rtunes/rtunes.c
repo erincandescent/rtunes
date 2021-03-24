@@ -175,6 +175,7 @@ main(int argc, char *argv[])
 {
 	size_t		 a, e;
 	ssize_t		 nread;
+	int		 port = AIRPORT;
 	int		 i, r, s, ch, fd, raw = 0, sample;
 	char		 cwd[1024];
 	unsigned char	 bufraw[4096 * 2 * 2], bufala[(4096 * 2 * 2) + 3];
@@ -184,7 +185,7 @@ main(int argc, char *argv[])
 	struct stsc	*c;
 
 	/* get command line options */
-	while ((ch = getopt(argc, argv, "46f:h:")) != -1) {
+	while ((ch = getopt(argc, argv, "46f:h:p:y")) != -1) {
 		switch (ch) {
 		case '4':
 			if (ai_family != PF_UNSPEC)
@@ -201,6 +202,9 @@ main(int argc, char *argv[])
 			break;
 		case 'h':
 			host = optarg;
+			break;
+		case 'p':
+			port = atoi(optarg);
 			break;
 		default:
 			usage();
@@ -220,7 +224,7 @@ main(int argc, char *argv[])
 		errx(1, "Can't get local hosts IP address");
 
 	/* connect airport rtsp port */
-	if ((sfd_rtsp = sys_connect(host, AIRPORT)) == -1)
+	if ((sfd_rtsp = sys_connect(host, port)) == -1)
 		err(1, "Connect rtsp port");
 
 	/* rtsp connection sequence */
