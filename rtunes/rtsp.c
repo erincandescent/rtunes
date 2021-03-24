@@ -19,6 +19,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <openssl/rand.h>
 
 #include "config.h"
 #include "extern.h"
@@ -48,7 +49,7 @@ rtsp_generate_sid(char *buf, int len)
 	int	i = 0;
 
 	while (i < 1000000000)
-		i = arc4random();
+		RAND_bytes((unsigned char*) &i, sizeof(i));
 
 	snprintf(buf, len, "%d", i);
 

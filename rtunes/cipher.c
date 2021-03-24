@@ -26,10 +26,6 @@
 #include "extern.h"
 #include "proto.h"
 
-#ifdef __linux__
-#include "../libbsd/arc4random.h"
-#endif
-
 /*
  * cipher_ aes_sendsample()
  *	AES encrypt audio sample
@@ -146,18 +142,11 @@ cipher_rsa_encrypt_aeskey(unsigned char *aeskey)
 unsigned char *
 cipher_aes_generate_key(void)
 {
-	int		 i, v;
 	unsigned char	*p = NULL;
-	unsigned char	 key[16];
-
-	for (i = 0; i <= sizeof(key) - sizeof(v); i += sizeof(v)) {
-		v = arc4random();
-		memcpy(&key[i], &v, sizeof(v));
-	}
 
 	p = malloc(16);
-	memcpy(p, key, 16);
-
+	RAND_bytes(p, 16);
+	
 	return (p);
 }
 
